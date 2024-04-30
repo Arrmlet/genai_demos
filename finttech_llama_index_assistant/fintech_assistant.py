@@ -4,13 +4,13 @@ import pandas as pd
 import plotly.graph_objects as go
 
 from newsapi import NewsApiClient
-
+from config import settings
 from llama_index.core.tools.tool_spec.base import BaseToolSpec
 from llama_index.core.agent import ReActAgent
 from llama_index.llms.openai import OpenAI
 
-NEWS_API = 'd661dbc880034227a8787cda8da32b65'
-OPENAI_API_KEY = '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'
+NEWS_API = settings.news_api# ''
+OPENAI_API_KEY = settings.openai_api #
 newsapi = NewsApiClient(api_key=NEWS_API)
 
 llm = OpenAI(model="gpt-4-1106-preview",api_key=OPENAI_API_KEY)
