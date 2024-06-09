@@ -1,8 +1,7 @@
-import streamlit as st
 import requests
-
+from config import settings
 # Define the API endpoint
-API_ENDPOINT = "https://api.example.com/rag_chatbot"
+API_ENDPOINT = settings.howsimpl_rag_url
 
 
 # Function to make the API call
@@ -38,8 +37,9 @@ def main():
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
         response = get_rag_response(prompt)
+        print(response)
         st.session_state.messages.append({"role": "assistant", "content": response})
-        st.chat_message("assistant").write(msg)
+        # st.chat_message("assistant").write(msg)
 
 
 if __name__ == "__main__":

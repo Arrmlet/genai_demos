@@ -27,24 +27,32 @@ def main():
         st.chat_message(msg["role"]).write(msg["content"])
 
     if prompt := st.chat_input():
-
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
-        response = agent.query(prompt)
-        msg = response.response
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = agent.query(prompt)
+                msg = response.response
 
-        ch_loc = 'charts/chart.json'
-        if os.path.exists(ch_loc):
-            # Read the HTML file content
-            import plotly.io as pio
-            b = open('charts/chart.json', 'rb').read()
-            fig = pio.from_json(b)
-            st.plotly_chart(fig)
-            os.remove(ch_loc)
+                ch_loc = 'charts/chart.json'
+                if os.path.exists(ch_loc):
+                    # Read the HTML file content
+                    import plotly.io as pio
+                    b = open('charts/chart.json', 'rb').read()
+                    fig = pio.from_json(b)
+                    st.plotly_chart(fig)
+                    os.remove(ch_loc)
 
-
-        st.session_state.messages.append({"role": "assistant", "content": msg})
-        st.chat_message("assistant").write(msg)
+                placeholder = st.empty()
+                full_response = ''
+                for item in msg:
+                    full_response += item
+                    placeholder.markdown(full_response)
+                # placeholder.markdown(full_response)
+                # st.session_state.messages.append({"role": "assistant", "content": msg})
+        message = {"role": "assistant", "content": full_response}
+        st.session_state.messages.append(message)
+            # st.chat_message("assistant").write(msg)
 
 if __name__ == "__main__":
     main()

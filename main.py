@@ -1,5 +1,7 @@
 import streamlit as st
-import rag_chatbot_app
+import rag_chatbot_howsimpl
+import rag_chatbot_ib
+import italy_shop_page
 import fintech_streamlit_page
 
 st.set_page_config(page_title='GenAI Solutions Demo', layout='wide')
@@ -80,16 +82,28 @@ def main():
             'image': 'https://howsimpl.com/wp-content/uploads/2022/01/center-logo.svg'
         },
         {
-            'title': 'Voice-to-Voice RAG',
-            'description': 'Experience the Voice-to-Voice RAG application.',
-            'url': '?app=voice_to_voice_rag',
-            'image': 'https://images.unsplash.com/photo-1558494949-ef01cbfbd65b?w=200&h=200&fit=crop'
-        },
-        {
             'title': 'RealTime Finance assistant',
             'description': 'Discover the future of Fintech.',
             'url': '?app=future_app',
             'image': 'https://americandeposits.com/wp-content/uploads/what-is-fintech-square.jpg'
+        },
+        {
+            'title': 'Customer support in Ukrainian for education endeavors.',
+            'description': 'Experience the Voice-to-Voice RAG application.',
+            'url': '?app=edu_ukrainian_app',
+            'image': 'https://howsimpl.com/wp-content/uploads/2022/01/center-logo.svg'
+        },
+        {
+            'title': 'Customer support in Italian for the store.',
+            'description': 'All roads leads to Rome.',
+            'url': '?app=italy_shop',
+            'image': 'https://cdn.britannica.com/46/154246-050-7C72E12F/view-Rome.jpg'
+        },
+        {
+            'title': 'Voice-to-Voice RAG',
+            'description': 'Experience the Voice-to-Voice RAG application.',
+            'url': '?app=voice_to_voice_rag',
+            'image': 'https://images.unsplash.com/photo-1558494949-ef01cbfbd65b?w=200&h=200&fit=crop'
         }
     ]
 
@@ -146,9 +160,13 @@ if __name__ == '__main__':
     if app == 'main':
         main()
     elif app == 'rag_chatbot':
-        rag_chatbot_app.main()
+        rag_chatbot_howsimpl.main()
     elif app == 'voice_to_voice_rag':
         voice_to_voice_rag()
+    elif app == 'italy_shop':
+        italy_shop_page.main()
+    elif app == 'edu_ukrainian_app':
+        rag_chatbot_ib.main()
     elif app == 'future_app':
         # future_app()
         fintech_streamlit_page.main()
