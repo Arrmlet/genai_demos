@@ -34,11 +34,14 @@ def main():
 
     if prompt := st.chat_input():
 
+        print()
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.chat_message("user").write(prompt)
         response = get_rag_response(prompt)
+        print(response)
+
         st.session_state.messages.append({"role": "assistant", "content": response})
-        st.chat_message("assistant").write(msg["content"])
+        st.chat_message("assistant").write(response)
 
 
 
